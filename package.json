@@ -1,0 +1,20 @@
+{
+  "name": "ageguess-bot",
+  "version": "1.0.0",
+  "description": "bot that can guess your age ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "telegram",
+    "nodejs"
+  ],
+  "author": "Bohdan Yunakov",
+  "license": "ISC",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.61.0"
+  }
+}
