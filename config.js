@@ -4,5 +4,3 @@
 * such as bot token, bot name and your telegram id.
 *
 * */
-
-// test
