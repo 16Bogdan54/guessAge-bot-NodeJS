@@ -11,9 +11,7 @@ import env from "dotenv";
 
 env.config();
 
-const bot = new TelegramBot(process.env.TOKEN, {
-  polling: true,
-});
+const bot = new TelegramBot(process.env.TOKEN, { polling: true });
 
 bot.on("message", async (message) => {
   const text = message.text;
@@ -25,7 +23,7 @@ bot.on("message", async (message) => {
         id,
         "https://tlgrm.eu/_/stickers/a02/7f2/a027f2cb-1aa3-456c-910f-4d7245ba437c/1.webp"
       );
-      await bot.sendMessage(id, "Hi I can guess your age! /ask me😸");
+      await bot.sendMessage(id, "Hi I can guess your age, just enter /start");
       break;
 
     case "/ask":
@@ -33,7 +31,10 @@ bot.on("message", async (message) => {
       break;
 
     case "/changeLang":
-      await bot.sendMessage(id, "Change language/Змінити мову/Изменить язык");
+      await bot.sendMessage(
+        id,
+        "Change language/Змінити мову/Изменить язык  /changeLang"
+      );
       break;
 
     default:
