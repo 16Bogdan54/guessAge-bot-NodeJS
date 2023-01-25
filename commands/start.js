@@ -5,7 +5,7 @@
  *
  * */
 
-export const start = () => {
+export const start = (bot, id) => {
   bot.sendSticker(
     id,
     "https://tlgrm.eu/_/stickers/a02/7f2/a027f2cb-1aa3-456c-910f-4d7245ba437c/1.webp"

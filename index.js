@@ -8,6 +8,10 @@
 
 import TelegramBot from "node-telegram-bot-api";
 import env from "dotenv";
+import { start } from "./commands/start.js";
+import { ask } from "./commands/ask.js";
+import { language } from "./commands/language.js";
+import { callbackQUeryHAndler } from "./message-handlers/callbackQuery.js";
 
 env.config();
 
@@ -19,29 +23,33 @@ bot.on("message", async (message) => {
 
   switch (text) {
     case "/start":
-      await bot.sendSticker(
-        id,
-        "https://tlgrm.eu/_/stickers/a02/7f2/a027f2cb-1aa3-456c-910f-4d7245ba437c/1.webp"
-      );
-      await bot.sendMessage(id, "Hi I can guess your age, just enter /start");
+      start(bot, id);
       break;
 
     case "/ask":
-      await bot.sendMessage(id, "Your age is less or bigger than 50?");
+      let lowRange = 1;
+      let highRange = 100;
+      let possibleGuesses = highRange + lowRange - 1;
+
+      ask(bot, id, yourGuess);
+      bot.on("callback_query", async (msg) => {
+        const data = msg.data;
+        callbackQUeryHAndler(
+          bot,
+          id,
+          data,
+          possibleGuesses,
+          lowRange,
+          highRange
+        );
+      });
       break;
 
-    case "/changeLang":
-      await bot.sendMessage(
-        id,
-        "Change language/Змінити мову/Изменить язык  /changeLang"
-      );
+    case "/language":
+      language(bot, id);
       break;
 
     default:
-      await bot.sendMessage(
-        id,
-        `Oops! You've entered wrong command or plain text`
-      );
       break;
   }
 });
