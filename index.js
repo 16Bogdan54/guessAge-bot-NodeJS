@@ -11,11 +11,16 @@ import env from "dotenv";
 import { start } from "./commands/start.js";
 import { ask } from "./commands/ask.js";
 import { language } from "./commands/language.js";
-import { callbackQUeryHAndler } from "./message-handlers/callbackQuery.js";
+import { callbackQueryHandler } from "./message-handlers/callbackQuery.js";
 
 env.config();
 
 const bot = new TelegramBot(process.env.TOKEN, { polling: true });
+
+let lowRange = 0;
+let highRange = 0;
+// let possibleGuesses = 0;
+// let yourGuess = 0;
 
 bot.on("message", async (message) => {
   const text = message.text;
@@ -27,20 +32,24 @@ bot.on("message", async (message) => {
       break;
 
     case "/ask":
-      let lowRange = 1;
-      let highRange = 100;
-      let possibleGuesses = highRange + lowRange - 1;
+      console.log("index");
+      // if (possibleGuesses === 0) {
+      lowRange = 1;
+      highRange = 100;
+      ask(bot, id, 50);
+      //   console.log("in if ");
+      // }
 
-      ask(bot, id, yourGuess);
       bot.on("callback_query", async (msg) => {
         const data = msg.data;
-        callbackQUeryHAndler(
+        callbackQueryHandler(
           bot,
           id,
           data,
-          possibleGuesses,
           lowRange,
           highRange
+          // possibleGuesses,
+          // yourGuess
         );
       });
       break;
