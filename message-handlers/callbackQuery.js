@@ -3,36 +3,34 @@ import { ask } from "../commands/ask.js";
 export const callbackQueryHandler = async (
   bot,
   id,
-  data
-  // lowRange,
-  // highRange
+  possibleGuesses,
+  // yourGuess,
+  lowRange,
+  highRange
 ) => {
-  let personAnswer = Number.parseInt(data);
+  bot.on("callback_query", async (msg) => {
+    const personAnswer = msg.data;
 
-  let lowRange = 1;
-  let highRange = 50;
-  let possibleGuesses = highRange + lowRange + 1;
-  let yourGuess = Math.floor(Math.ceil(possibleGuesses / 2));
-  console.count("not in switch");
+    possibleGuesses = highRange + lowRange - 1;
+    let yourGuess = Math.round(possibleGuesses / 2);
 
-  switch (personAnswer) {
-    case 1:
-      bot.sendMessage(id, "Win");
-      return;
+    switch (personAnswer) {
+      case "1":
+        await bot.sendMessage(id, "Win");
+        return;
 
-    case 2:
-      highRange = yourGuess - 1;
-      console.log(Math.floor(Math.ceil(possibleGuesses / 2)));
-      console.log(highRange);
-      ask(bot, id, yourGuess);
-      break;
+      case "2":
+        highRange = yourGuess - 1;
+        await ask(bot, id, yourGuess);
+        break;
 
-    case 3:
-      lowRange = yourGuess + 1;
-      ask(bot, id, yourGuess);
-      break;
+      case "3":
+        lowRange = yourGuess + 1;
+        await ask(bot, id, yourGuess);
+        break;
 
-    default:
-      break;
-  }
+      default:
+        break;
+    }
+  });
 };

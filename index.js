@@ -16,49 +16,37 @@ import { callbackQueryHandler } from "./message-handlers/callbackQuery.js";
 env.config();
 
 const bot = new TelegramBot(process.env.TOKEN, { polling: true });
-
-// let lowRange = 1;
-// let highRange = 100;
-let firstTime = 0;
-// let possibleGuesses = 0;
-// let yourGuess = 0;
-
-console.count("index1");
+const botName = process.env.BOT_NAME_MENTION || "your bot name";
 
 bot.on("message", async (message) => {
   const text = message.text;
   const id = message.chat.id;
 
   switch (text) {
-    case "/start":
+    case `/start${botName}`:
       start(bot, id);
       break;
 
-    case "/ask":
-      console.count("index2");
-      // if (possibleGuesses === 0) {
-      // lowRange = 1;
-      // highRange = 100;
-      if (firstTime === 0) ask(bot, id, 50);
-      //   console.log("in if ");
-      // }
+    case `/ask${botName}`:
+      let lowRange = 1;
+      let highRange = 100;
+      let possibleGuesses = highRange + lowRange - 1;
+      let yourGuess = Math.ceil(possibleGuesses / 2);
 
-      bot.on("callback_query", async (msg) => {
-        firstTime = 1;
-        const data = msg.data;
-        callbackQueryHandler(
-          bot,
-          id,
-          data
-          // lowRange,
-          // highRange
-          // possibleGuesses,
-          // yourGuess
-        );
-      });
+      ask(bot, id, yourGuess);
+      highRange /= 2;
+
+      callbackQueryHandler(
+        bot,
+        id,
+        possibleGuesses,
+        // yourGuess,
+        lowRange,
+        highRange
+      );
       break;
 
-    case "/language":
+    case `/language${botName}`:
       language(bot, id);
       break;
 
