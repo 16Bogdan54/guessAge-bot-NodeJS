@@ -33,14 +33,14 @@ bot.on("message", async (message) => {
       let possibleGuesses = highRange + lowRange - 1;
       let yourGuess = Math.round(possibleGuesses / 2);
 
-      ask(bot, id, yourGuess);
+      await ask(bot, id, yourGuess);
       highRange /= 2;
 
-      ageHandler(bot, id, possibleGuesses, yourGuess, lowRange, highRange);
+      await ageHandler(bot, id, possibleGuesses, yourGuess, lowRange, highRange);
       break;
 
     case `/language${botName}`:
-      language(bot, id);
+      await language(bot, id);
       languageHandler(bot);
       break;
 
