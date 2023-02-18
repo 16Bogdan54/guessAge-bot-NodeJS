@@ -36,8 +36,6 @@ bot.on("message", async (message) => {
       ask(bot, id, yourGuess);
       highRange /= 2;
 
-      console.log("out of cq");
-
       ageHandler(bot, id, possibleGuesses, yourGuess, lowRange, highRange);
       break;
 
