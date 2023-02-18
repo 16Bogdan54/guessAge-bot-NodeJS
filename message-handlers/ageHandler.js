@@ -1,18 +1,20 @@
 import { ask } from "../commands/ask.js";
 
-export const callbackQueryHandler = async (
+export const ageHandler = async (
   bot,
   id,
   possibleGuesses,
-  // yourGuess,
+  yourGuess,
   lowRange,
   highRange
 ) => {
   bot.on("callback_query", async (msg) => {
     const personAnswer = msg.data;
 
+    console.log("hr", highRange, "lr", lowRange);
+
     possibleGuesses = highRange + lowRange - 1;
-    let yourGuess = Math.round(possibleGuesses / 2);
+    yourGuess = Math.ceil(possibleGuesses / 2);
 
     switch (personAnswer) {
       case "1":
