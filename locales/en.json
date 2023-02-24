@@ -1,5 +1,9 @@
 {
   "greeting": "Hi I can guess your age! /ask me😸",
   "win": "Win!",
-  "ask": "Your age is less or bigger than"
+  "ask": "Your age is less or bigger than",
+  "yes_btn": "Yes",
+  "lower_btn": "Lower",
+  "higher_btn": "Bigger"
+
 }
