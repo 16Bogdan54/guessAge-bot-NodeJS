@@ -1,3 +1,5 @@
 {
-  "greeting": "Hi I can guess your age! /ask me😸"
+  "greeting": "Hi I can guess your age! /ask me😸",
+  "win": "Win!",
+  "ask": "Your age is less or bigger than"
 }

@@ -1,4 +1,5 @@
 import { ask } from "../commands/ask.js";
+import i18n from "i18n";
 
 export const ageHandler = async (
   bot,
@@ -18,7 +19,7 @@ export const ageHandler = async (
 
     switch (personAnswer) {
       case "1":
-        await bot.sendMessage(id, "Win");
+        await bot.sendMessage(id, i18n.__("win"));
         return;
 
       case "2":
