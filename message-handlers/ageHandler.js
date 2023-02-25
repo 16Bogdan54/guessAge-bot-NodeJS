@@ -15,7 +15,7 @@ export const ageHandler = async (
     console.log("hr", highRange, "lr", lowRange);
 
     possibleGuesses = highRange + lowRange - 1;
-    yourGuess = Math.ceil(possibleGuesses / 2);
+    yourGuess = Math.round(possibleGuesses / 2);
 
     switch (personAnswer) {
       case "1":
