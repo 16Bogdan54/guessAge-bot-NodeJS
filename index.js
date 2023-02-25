@@ -24,7 +24,8 @@ bot.on("message", async (message) => {
   switch (text) {
     case `/start${botName}`:
       let msg = i18n.__("greeting");
-      start(bot, id, msg);
+      console.log(i18n.__("greeting"))
+      await start(bot, id, msg);
       break;
 
     case `/ask${botName}`:
